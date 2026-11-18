@@ -7,7 +7,7 @@ port = 54322
 [studio]
 enabled = true
 port = 54323
-[inbucket]
+[local_smtp]
 enabled = true
 port = 54324
 [auth]
@@ -15,5 +15,5 @@ enabled = true
 site_url = "http://localhost:3000"
 additional_redirect_urls = ["http://localhost:3000/auth/callback", "http://localhost:3000/auth/callback?flow=recovery"]
 [auth.email]
-enable_signup = true
+enabled = true
 enable_confirmations = true

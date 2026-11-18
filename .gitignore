@@ -11,3 +11,5 @@ __pycache__/
 .DS_Store
 *.tsbuildinfo
 coverage/
+supabase/.temp/
+supabase/.branches/

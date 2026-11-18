@@ -27,6 +27,13 @@ begin
     or has_function_privilege('authenticated', 'public.request_toolnest_account_deletion(uuid)', 'execute') then
     raise exception 'Privileged RPC exposed to clients';
   end if;
+  if not has_table_privilege('authenticated', 'public.processing_jobs', 'select')
+    or has_table_privilege('authenticated', 'public.processing_jobs', 'update')
+    or has_table_privilege('authenticated', 'public.job_files', 'select')
+    or not has_column_privilege('authenticated', 'public.profiles', 'display_name', 'update')
+    or not has_table_privilege('service_role', 'public.job_files', 'delete') then
+    raise exception 'Data API grants do not match the trust boundaries';
+  end if;
 
   first_job := public.create_toolnest_merge(first_user, array[10, 20]);
   second_job := public.create_toolnest_merge(second_user, array[30, 40]);
@@ -100,7 +107,6 @@ begin
   if not exists (select 1 from public.processing_jobs where id = current_setting('toolnest.test.first_job')::uuid)
     or exists (select 1 from public.processing_jobs where id = current_setting('toolnest.test.second_job')::uuid)
     or exists (select 1 from public.account_deletion_requests)
-    or exists (select 1 from public.job_files)
     or exists (select 1 from public.admin_roles)
     or (select array_agg(tool_slug) from public.favorites) is distinct from array['merge-pdf'] then
     raise exception 'Owner isolation failed';

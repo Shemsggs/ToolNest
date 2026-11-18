@@ -13,7 +13,7 @@ Account-only utility workspace built with Next.js, Supabase, and Python. The twe
 
 ## Quick start (local development)
 
-Requirements: Node.js 20+, pnpm 9+, Python 3.11+, Docker + Supabase CLI (or hosted Supabase). On Windows use PowerShell and Docker Desktop.
+Requirements: Node.js 20+, pnpm 9+, Python 3.11+, and Supabase CLI v3. Docker is required for a local Supabase stack. On Windows use PowerShell and Docker Desktop for local Supabase.
 
 1. `corepack enable` and `corepack prepare pnpm@9.15.9 --activate`
 2. `pnpm install --frozen-lockfile`
@@ -21,7 +21,9 @@ Requirements: Node.js 20+, pnpm 9+, Python 3.11+, Docker + Supabase CLI (or host
 4. Apply all migrations with `supabase migration up`. Use `supabase db reset` for a disposable local database only.
 5. `cp .env.example apps/web/.env.local` and populate actual public and service keys from `supabase status` (on Windows copy manually).
 6. `pnpm dev`; open http://localhost:3000
-7. Use the local Supabase test inbox to verify signup and password recovery. For hosted Auth, allow both `/auth/callback` and `/auth/callback?flow=recovery` on your application origin. Open recovery links in the browser that requested them. [Supabase redirect URL configuration](https://supabase.com/docs/guides/auth/redirect-urls)
+7. Use the local Supabase test inbox to verify signup and password recovery. Open recovery links in the browser that requested them.
+
+For a hosted database, use `supabase login`, `supabase link --project-ref YOUR_PROJECT_REF`, and `supabase db push --remote` from the repo root instead of starting the local stack. The migrations include ToolNest's Data API grants. Configure the hosted project URL and keys in `apps/web/.env.local`, then allow both `/auth/callback` and `/auth/callback?flow=recovery` on your application origin. [Supabase migrations](https://supabase.com/docs/guides/deployment/database-migrations) · [Supabase redirect URLs](https://supabase.com/docs/guides/auth/redirect-urls)
 
 ### Python worker
 
