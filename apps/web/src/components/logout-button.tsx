@@ -1,0 +1,1 @@
+'use client';import {getSupabaseBrowser} from '@/lib/supabase-browser';export function LogoutButton(){return <button className="btn-secondary" onClick={async()=>{await getSupabaseBrowser().auth.signOut();window.location.assign('/login')}}>Sign out</button>}

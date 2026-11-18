@@ -1,0 +1,4 @@
+{
+  "name": "toolnest", "private": true, "packageManager": "pnpm@9.15.9",
+  "scripts": {"dev":"pnpm --filter @toolnest/web dev","build":"pnpm --filter @toolnest/web build","lint":"pnpm --filter @toolnest/web lint","typecheck":"pnpm --filter @toolnest/web typecheck","test":"pnpm --filter @toolnest/web test"}
+}

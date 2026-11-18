@@ -1,0 +1,7 @@
+@tailwind base; @tailwind components; @tailwind utilities;
+:root{font-family:Arial,Helvetica,sans-serif;color:#0f172a;background:#f8fafc}
+body{margin:0}button,input,textarea,select{font:inherit}button{cursor:pointer}
+.card{@apply bg-white border border-slate-200 rounded-2xl shadow-sm p-5}
+.btn{@apply inline-flex items-center justify-center rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-semibold px-4 py-2.5 disabled:opacity-50}
+.btn-secondary{@apply inline-flex items-center justify-center rounded-xl border border-slate-200 bg-white hover:bg-slate-50 px-4 py-2.5 font-medium}
+.field{@apply w-full border border-slate-300 rounded-xl px-3 py-2.5 bg-white focus:outline-none focus:ring-2 focus:ring-blue-200}
